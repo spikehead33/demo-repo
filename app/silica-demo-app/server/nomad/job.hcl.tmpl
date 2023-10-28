@@ -1,0 +1,35 @@
+job "silica-demo-app-server" {
+  type = "service"
+
+  group "silica-demo-app-server" {
+    count = {{ .Value.Count }}
+
+    task "silica-demo-app-server" {
+      driver = "docker"
+
+      env {
+        TARGET = {{ .Value.TARGET }}
+      }
+
+      config {
+        image = "localhost:5000/silica-demo-app:0.0.1"
+      }
+
+      service {
+        port = "http"
+
+        check {
+          type     = "http"
+          path     = "/"
+          interval = "10s"
+          timeout  = "2s"
+        }
+      }
+
+      resources {
+        cpu    = 500 # MHz
+        memory = 128 # MB
+      }
+    }
+  }
+}

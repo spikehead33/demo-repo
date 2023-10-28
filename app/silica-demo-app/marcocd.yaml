@@ -4,4 +4,5 @@ components:
     resources:
       - app/silica-demo-app/server/nomad/job.hcl.tmpl
     values:
+      count: 1
       TARGET: MarcoCD

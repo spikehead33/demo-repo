@@ -11,8 +11,10 @@ import (
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Print("got / requests\n")
-		io.WriteString(w, fmt.Sprintf("Hello, %v", os.Getenv("TARGET")))
+		targetVar := os.Getenv("TARGET")
+
+		log.Print(fmt.Sprintf("got / requests: Print %v\n", targetVar))
+		io.WriteString(w, fmt.Sprintf("Hello, %v", targetVar))
 	})
 
 	err := http.ListenAndServe(":3000", mux)
