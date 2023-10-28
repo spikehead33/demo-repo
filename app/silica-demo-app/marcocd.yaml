@@ -1,0 +1,7 @@
+module: silica-demo-app
+components:
+  - name: server
+    resources:
+      - app/silica-demo-app/server/nomad/job.hcl.tmpl
+    values:
+      TARGET: MarcoCD
